@@ -6,23 +6,26 @@
  */
 
 // Import required libraries
-import { createCanvas } from 'canvas';
-import JsBarcode from 'jsbarcode';
-import fs from 'fs';
-import path from 'path';
+import { createCanvas } from "canvas";
+import fs from "fs";
+import JsBarcode from "jsbarcode";
+import path from "path";
 
 // Define the text to encode in the barcode
-const barcodeText = '12345678';
+const barcodeText = "\u00F1(91)912345123456789012345678901125013100123404";
 
 // Define the output file path
-const outputFilePath = path.join(__dirname, '..', 'barcode.png');
+const outputFilePath = path.join(__dirname, "..", "barcode.png");
 
 /**
  * Generate a barcode and save it as a PNG file
  * @param text - Text to encode in the barcode
  * @param outputPath - Path where the PNG file will be saved
  */
-async function generateBarcode(text: string, outputPath: string): Promise<void> {
+async function generateBarcode(
+  text: string,
+  outputPath: string
+): Promise<void> {
   try {
     console.log(`Generating barcode for text: ${text}`);
 
@@ -31,35 +34,34 @@ async function generateBarcode(text: string, outputPath: string): Promise<void> 
 
     // Generate the barcode on the canvas
     JsBarcode(canvas, text, {
-      format: 'CODE128', // Barcode format (CODE128 supports alphanumeric)
-      width: 2,          // Width of the bars
-      height: 100,       // Height of the barcode
-      displayValue: true, // Show the text below the barcode
-      text: text,        // Text to display (can be different from encoded value)
-      fontOptions: 'bold', // Font style
-      fontSize: 18,      // Font size
-      margin: 10,        // Margin around the barcode
+      format: "CODE128C", // CODE128C を明示
+      width: 9.02, // 1モジュールの幅（1200dpi換算）
+      height: 472, // 10mm = 約472px（1200dpi）
+      displayValue: true, // 人間が読めるテキストを表示
+      textAlign: "center",
+      margin: 120, // クワイエットゾーン（左右 2.54mm × 1200dpi ≈ 120px）
+      ean128: true, // GS1-128 を使用
     });
 
     // Convert canvas to a PNG buffer
-    const buffer = canvas.toBuffer('image/png');
+    const buffer = canvas.toBuffer("image/png");
 
     // Save the buffer to a file
     fs.writeFileSync(outputPath, buffer);
 
     console.log(`Barcode saved successfully at: ${outputPath}`);
   } catch (error) {
-    console.error('Error generating barcode:', error);
+    console.error("Error generating barcode:", error);
   }
 }
 
 // Generate the barcode and handle the promise
 generateBarcode(barcodeText, outputFilePath)
   .then(() => {
-    console.log('Barcode generation process completed.');
+    console.log("Barcode generation process completed.");
   })
   .catch((error) => {
-    console.error('Failed to generate barcode:', error);
+    console.error("Failed to generate barcode:", error);
     process.exit(1);
   });
 
