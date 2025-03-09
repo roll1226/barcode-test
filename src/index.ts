@@ -1,6 +1,6 @@
 /**
  * Barcode Generator
- * 
+ *
  * This script demonstrates how to generate barcodes using the JsBarcode library
  * with Node.js Canvas and save them as PNG files.
  */
@@ -25,10 +25,10 @@ const outputFilePath = path.join(__dirname, '..', 'barcode.png');
 async function generateBarcode(text: string, outputPath: string): Promise<void> {
   try {
     console.log(`Generating barcode for text: ${text}`);
-    
+
     // Create a canvas with appropriate dimensions
     const canvas = createCanvas(300, 100);
-    
+
     // Generate the barcode on the canvas
     JsBarcode(canvas, text, {
       format: 'CODE128', // Barcode format (CODE128 supports alphanumeric)
@@ -40,13 +40,13 @@ async function generateBarcode(text: string, outputPath: string): Promise<void> 
       fontSize: 18,      // Font size
       margin: 10,        // Margin around the barcode
     });
-    
+
     // Convert canvas to a PNG buffer
     const buffer = canvas.toBuffer('image/png');
-    
+
     // Save the buffer to a file
     fs.writeFileSync(outputPath, buffer);
-    
+
     console.log(`Barcode saved successfully at: ${outputPath}`);
   } catch (error) {
     console.error('Error generating barcode:', error);
@@ -65,4 +65,3 @@ generateBarcode(barcodeText, outputFilePath)
 
 // Export the function for potential use in other modules
 export { generateBarcode };
-

@@ -86,4 +86,3 @@ You can modify the `src/index.ts` file to:
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
