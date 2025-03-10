@@ -9,7 +9,7 @@ const barcodeExamples = [
     options: {
       bcid: "gs1-128",
       text: "(91)912345123456789012345678901125013100123404",
-      scale: 9, // 1モジュール = 9ピクセル（1200 DPI に合わせる）
+      scale: 5, // 1モジュール = 5ピクセル（600 DPI に合わせる）
       width: 255, // バーコード部分の長さ 48.77mm
       height: 52, // バーコードの高さ 10mm 以上
       includetext: true,
@@ -22,7 +22,7 @@ const barcodeExamples = [
     options: {
       bcid: "code128",
       text: "BWIP-JS Example",
-      scale: 3,
+      scale: 5, // 600 DPI に合わせる
       height: 10,
       includetext: true,
       textxalign: "center" as "center",
@@ -34,7 +34,7 @@ const barcodeExamples = [
     options: {
       bcid: "qrcode",
       text: "https://example.com",
-      scale: 3,
+      scale: 5, // 600 DPI に合わせる
       includetext: false,
       format: "full",
     },
@@ -45,7 +45,7 @@ const barcodeExamples = [
     options: {
       bcid: "datamatrix",
       text: "BWIP-JS DataMatrix Example",
-      scale: 3,
+      scale: 5, // 600 DPI に合わせる
       format: "square",
     },
   },
