@@ -9,7 +9,7 @@ const barcodeExamples = [
     options: {
       bcid: "gs1-128",
       text: "(91)912345123456789012345678901125013100123404",
-      scale: 5, // 1モジュール = 5ピクセル（600 DPI に合わせる）
+      scale: 4, // 1モジュール = 4ピクセル（600 DPI に合わせる）
       width: 255, // バーコード部分の長さ 48.77mm
       height: 52, // バーコードの高さ 10mm 以上
       includetext: true,
