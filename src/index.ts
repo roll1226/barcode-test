@@ -35,7 +35,7 @@ async function generateBarcode(
     // Generate the barcode on the canvas
     JsBarcode(canvas, text, {
       format: "CODE128C", // CODE128C を明示
-      width: 9.02, // 1モジュールの幅（1200dpi換算）
+       // 1モジュールの幅（600dpi換算）
       height: 472, // 10mm = 約472px（1200dpi）
       displayValue: true, // 人間が読めるテキストを表示
       textAlign: "center",
